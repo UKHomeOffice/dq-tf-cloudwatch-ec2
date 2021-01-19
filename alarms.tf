@@ -4,7 +4,7 @@ locals {
 
   thresholds = {
     CPUUtilizationThreshold   = min(max(var.cpu_utilization_threshold, 0), 100)
-    AvailableMemoryThreshold   = max(var.available_memory_threshold, 0)
+    AvailableMemoryThreshold  = max(var.available_memory_threshold, 0)
     UsedStorageSpaceThreshold = max(var.used_storage_space_threshold, 0)
 
   }
@@ -51,7 +51,7 @@ resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
   alarm_name          = "${var.pipeline_name}-used-storage-space"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
-  metric_name         = "UsedStorageSpace"
+  metric_name         = "used_percent"
   namespace           = "AWS/CWAgent"
   period              = "600"
   statistic           = "Average"

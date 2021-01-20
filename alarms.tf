@@ -34,7 +34,7 @@ resource "aws_cloudwatch_metric_alarm" "available_memory_too_low" {
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "mem_available_percent"
-  namespace           = "AWS/CWAgent"
+  namespace           = "CWAgent"
   period              = "600"
   statistic           = "Average"
   threshold           = local.thresholds["AvailableMemoryThreshold"]
@@ -52,7 +52,7 @@ resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
   metric_name         = "used_percent"
-  namespace           = "AWS/CWAgent"
+  namespace           = "CWAgent"
   period              = "600"
   statistic           = "Average"
   threshold           = local.thresholds["UsedStorageSpaceThreshold"]

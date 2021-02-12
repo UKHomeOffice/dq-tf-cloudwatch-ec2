@@ -10,7 +10,6 @@ locals {
   }
 }
 
-
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
   alarm_name          = "${var.pipeline_name}-CPU-Utilization-too-high"
   comparison_operator = "GreaterThanThreshold"
@@ -66,17 +65,17 @@ resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "health" {
-  alarm_name                = "web-health-alarm"
-  comparison_operator       = "GreaterThanOrEqualToThreshold"
-  evaluation_periods        = "1"
-  metric_name               = "StatusCheckFailed"
-  namespace                 = "AWS/EC2"
-  period                    = "120"
-  statistic                 = "Average"
-  threshold                 = "1"
-  alarm_description         = "This metric monitors ec2 health status"
-  alarm_actions             = [aws_sns_topic.ec2.arn]
-  ok_actions                = [aws_sns_topic.ec2.arn]
+  alarm_name          = "web-health-alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "StatusCheckFailed"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "1"
+  alarm_description   = "This metric monitors ec2 health status"
+  alarm_actions       = [aws_sns_topic.ec2.arn]
+  ok_actions          = [aws_sns_topic.ec2.arn]
 
   dimensions = {
     InstanceId = var.ec2_instance_id

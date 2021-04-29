@@ -50,7 +50,7 @@ resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
   alarm_name          = "${var.pipeline_name}-used-storage-space"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "1"
-  metric_name         = "used_percent"
+  metric_name         = "disk_used_percent"
   namespace           = "CWAgent"
   period              = "600"
   statistic           = "Average"

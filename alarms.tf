@@ -60,7 +60,9 @@ resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
   ok_actions          = [aws_sns_topic.ec2.arn]
 
   dimensions = {
-    InstanceId = var.ec2_instance_id
+    InstanceId = var.ec2_instance_id,
+    path       = "/",
+    fstype     = "xfs",
   }
 }
 

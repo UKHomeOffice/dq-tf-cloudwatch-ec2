@@ -26,6 +26,11 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
   dimensions = {
     InstanceId = var.ec2_instance_id
   }
+
+  depends_on = [
+    var.ec2_instance_id
+  ]
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "available_memory_too_low" {
@@ -44,6 +49,10 @@ resource "aws_cloudwatch_metric_alarm" "available_memory_too_low" {
   dimensions = {
     InstanceId = var.ec2_instance_id
   }
+
+  depends_on = [
+    var.ec2_instance_id
+  ]
 }
 
 resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
@@ -64,6 +73,10 @@ resource "aws_cloudwatch_metric_alarm" "Used_storage_space" {
     path       = "/",
     fstype     = "xfs",
   }
+
+  depends_on = [
+    var.ec2_instance_id
+  ]
 }
 
 resource "aws_cloudwatch_metric_alarm" "health" {
@@ -82,4 +95,8 @@ resource "aws_cloudwatch_metric_alarm" "health" {
   dimensions = {
     InstanceId = var.ec2_instance_id
   }
+
+  depends_on = [
+    var.ec2_instance_id
+  ]
 }

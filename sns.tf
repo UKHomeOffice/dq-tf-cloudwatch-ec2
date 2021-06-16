@@ -6,10 +6,14 @@ resource "aws_sns_topic" "ec2" {
 resource "aws_sns_topic_policy" "ec2" {
   arn    = aws_sns_topic.ec2.arn
   policy = data.aws_iam_policy_document.sns_topic_policy.json
+
+  depends_on = [aws_sns_topic.ec2]
 }
 
 resource "aws_sns_topic_subscription" "sns_to_lambda" {
   topic_arn = aws_sns_topic.ec2.arn
   protocol  = "lambda"
   endpoint  = aws_lambda_function.lambda_slack.arn
+
+  depends_on = [aws_sns_topic.ec2]
 }

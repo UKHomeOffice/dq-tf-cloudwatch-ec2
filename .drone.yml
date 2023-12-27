@@ -29,7 +29,8 @@ steps:
   pull: if-not-exists
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
-  - docker run --rm -v $(pwd):/data -w /data hashicorp/terraform fmt --diff --check
+    - /usr/local/bin/wait
+    - docker run --rm -v $(pwd):/data -w /data hashicorp/terraform fmt --diff --check
   when:
     event:
     - push
